@@ -30,8 +30,8 @@ int d1_2(NumericVector input) {
 /***R
 # make sure it match the demo input
 
-d1_1(c(1721, 979, 366, 299, 675, 1456)) == 514579
-d1_2(c(1721, 979, 366, 299, 675, 1456)) == 241861950
+stopifnot(d1_1(c(1721, 979, 366, 299, 675, 1456)) == 514579)
+stopifnot(d1_2(c(1721, 979, 366, 299, 675, 1456)) == 241861950)
 
 input1 <- as.numeric(readLines(here::here("data/input1.txt")))
 d1_1(input1)

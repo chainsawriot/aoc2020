@@ -93,8 +93,8 @@ int d2_2(CharacterVector input) {
 
 /***R
 testdata <- c("1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc")
-d2_1(testdata) == 2
-d2_2(testdata) == 1
+stopifnot(d2_1(testdata) == 2)
+stopifnot(d2_2(testdata) == 1)
 
 input2 <- readLines(here::here("data/input2.txt"))
 d2_1(input2)
