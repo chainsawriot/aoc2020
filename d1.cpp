@@ -18,7 +18,7 @@ int d1_2(NumericVector input) {
     for (NumericVector::iterator i = input.begin(); i != input.end(); ++i) {
 	for (NumericVector::iterator j = input.begin(); j != input.end(); ++j) {
 	    for (NumericVector::iterator k = input.begin(); k != input.end(); ++k) {
-		if (*i + *j + * k == 2020) {
+		if (*i + *j + *k == 2020) {
 		    return (*i) * (*j) * (*k);
 		}
 	    }
