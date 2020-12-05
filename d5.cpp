@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-#include <regex>
 
 using namespace Rcpp;
 
@@ -11,24 +10,6 @@ std::pair<int, int> forward (std::pair<int, int> input) {
 std::pair<int, int> backward (std::pair<int, int> input) {
     input.first = ceil((input.first + input.second) / 2.0);
     return input;
-}
-
-void forward_test(int a, int b) {
-    std::pair<int, int> x;
-    x.first = a;
-    x.second = b;
-    x = forward(x);
-    std::cout << x.first << std::endl;
-    std::cout << x.second << std::endl;
-}
-
-void backward_test(int a, int b) {
-    std::pair<int, int> x;
-    x.first = a;
-    x.second = b;
-    x = backward(x);
-    std::cout << x.first << std::endl;
-    std::cout << x.second << std::endl;
 }
 
 int stepping(std::string input, int x = 0, int y = 127, char forw_char = 'F', char back_char = 'B') {
