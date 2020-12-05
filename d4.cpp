@@ -5,7 +5,6 @@ using namespace Rcpp;
 
 // [[Rcpp::plugins("cpp11")]]
 
-// [[Rcpp::export]]
 std::vector<std::string> normalize(CharacterVector input) {
     std::vector<std::string> sack;
     std::string record;
@@ -22,7 +21,6 @@ std::vector<std::string> normalize(CharacterVector input) {
     return sack;
 }
 
-// [[Rcpp::export]]
 std::vector<std::string> explode(std::string s, std::string regex_string = "[^- :]+") {
     // reinventing strsplit()
     std::regex words_regex(regex_string);
@@ -84,7 +82,6 @@ std::map<std::string, std::string> item_to_map (std::string item) {
     return item_map;
 }
 
-// [[Rcpp::export]]
 bool check_yr (std::string yr, int min_yr, int max_yr) {
     if (yr.length() != 4) {
 	return false;
@@ -100,7 +97,6 @@ bool check_yr (std::string yr, int min_yr, int max_yr) {
     return true;
 }
 
-// [[Rcpp::export]]
 bool check_hex(std::string hex) {
     if (hex.length() != 7) {
 	return false;
@@ -114,7 +110,6 @@ bool check_hex(std::string hex) {
     return true;
 }
 
-// [[Rcpp::export]]
 bool check_pass(std::string hex) {
     if (hex.length() != 9) {
 	return false;
@@ -125,7 +120,6 @@ bool check_pass(std::string hex) {
     return true;
 }
 
-// [[Rcpp::export]]
 bool check_height (std::string hex) {
     std::vector<std::string> unit = explode(hex, "cm|in");
     if (unit.size() == 0) {
@@ -185,7 +179,6 @@ bool validate_map (std::map<std::string, std::string> itemmap) {
     return true;
 }
 
-// [[Rcpp::export]]
 bool validate2(std::string input) {
     std::map<std::string, std::string> inputmap = item_to_map(input);
     return validate_map(inputmap);
