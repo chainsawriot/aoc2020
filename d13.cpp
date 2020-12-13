@@ -219,8 +219,12 @@ stopifnot(d13_2_better(strsplit(testdata, "\n")[[1]]) == 1068781)
 stopifnot(d13_2_stupid(c("", "17,x,13,19")) == 3417)
 ## Raw iteration with a small modification: for small data it's okay; but not possible to solve our problem; can limit search space
 stopifnot(d13_2_better(c("", "17,x,13,19"),100) == 3417)
-## Chinese Remainder theorem can't lead to correct answer, if all numbers are prime.
+## Chinese Remainder theorem can't lead to correct answer, because the calculation of a*m*y can quickly explode even 64-bit integer.
+
 d13_2_crt(c("", "17,x,13,19"))
+
+## A method of reducing search space
+
 d13_2(c("", "17,x,13,19"))
 
 
