@@ -10,3 +10,9 @@ R code is embedded also in the C++ code. Running the Rcpp code with
 ```r
 Rcpp::sourceCpp("d1.cpp")
 ```
+
+or even in command line
+
+```bash
+Rscript -e "Rcpp::sourceCpp('d1.cpp')"
+```
