@@ -58,21 +58,21 @@ std::map<long int, std::pair<long int, long int>> preprocess(std::vector<long in
     return res;
 }
 
-// [[Rcpp::export]]
-void test() {
-    std::vector<long int> input = {0,3,6};
-    auto res = preprocess(input);
-    std::cout << input[input.size() -1] << std::endl;
-    std::cout << res[6].first << std::endl;
-    std::cout << res[6].second << std::endl;
-    if (res.find(8) == res.end()) {
-	std::cout << "8 Not found" << std::endl;
-    }
-    if (res.find(6) == res.end()) {
-	std::cout << "6 Not found" << std::endl;
-    }
-}
+// void test() {
+//     std::vector<long int> input = {0,3,6};
+//     auto res = preprocess(input);
+//     std::cout << input[input.size() -1] << std::endl;
+//     std::cout << res[6].first << std::endl;
+//     std::cout << res[6].second << std::endl;
+//     if (res.find(8) == res.end()) {
+// 	std::cout << "8 Not found" << std::endl;
+//     }
+//     if (res.find(6) == res.end()) {
+// 	std::cout << "6 Not found" << std::endl;
+//     }
+// }
 
+// prettyprint: Useful for debugging
 void pp (std::map<long int, std::pair<long int, long int>> input) {
     for(auto it = input.cbegin(); it != input.cend(); ++it)
 {
@@ -81,12 +81,11 @@ void pp (std::map<long int, std::pair<long int, long int>> input) {
  }
 }
 
-// [[Rcpp::export]]
-void test2() {
-    std::vector<long int> input = {0,3,6};
-    auto res = preprocess(input);
-    pp(res);
-}
+// void test2() {
+//     std::vector<long int> input = {0,3,6};
+//     auto res = preprocess(input);
+//     pp(res);
+// }
 
 // [[Rcpp::export]]
 long int d15_2 (std::vector<long int> input, long int round = 30000000) {
