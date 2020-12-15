@@ -58,6 +58,18 @@ std::map<long int, std::pair<long int, long int>> preprocess(std::vector<long in
     return res;
 }
 
+std::unordered_map<long int, std::pair<long int, long int>> preprocess2(std::vector<long int> input) {
+    std::unordered_map<long int, std::pair<long int, long int>> res;
+    for (int i = 0; i < input.size(); i++) {
+	std::pair<long int, long int> x;
+	x.first = i + 1;
+	x.second = i + 1;
+	res[input[i]] = x;
+    }
+    return res;
+}
+
+
 // void test() {
 //     std::vector<long int> input = {0,3,6};
 //     auto res = preprocess(input);
@@ -89,6 +101,40 @@ void pp (std::map<long int, std::pair<long int, long int>> input) {
 
 // [[Rcpp::export]]
 long int d15_2 (std::vector<long int> input, long int round = 30000000) {
+    auto res = preprocess2(input);
+    long int cur = input.size() + 1;
+    long int ans = -1;
+    long int lastplay = input[input.size() - 1];
+    while (cur < (round+1)) {
+	//std::cout << "Current:" << std::endl;
+	//std::cout << cur << std::endl;
+	//std::cout << "Ans:" << std::endl;
+	//std::cout << ans << std::endl;
+	//pp(res);
+	//std::cout << "====" <<std::endl;
+	if (res.find(lastplay) == res.end()) {
+	    ans = 0;
+	} else {
+	    ans = res[lastplay].first - res[lastplay].second;
+	}
+	// updating state
+	if (res.find(ans) == res.end()) {
+	    std::pair<long int, long int> x;
+	    x.first = cur;
+	    x.second = cur;
+	    res[ans] = x;
+	} else {
+	    res[ans].second = res[ans].first;
+	    res[ans].first = cur;
+	}
+	lastplay = ans;
+	cur ++;
+    }
+    return ans;
+}
+
+// [[Rcpp::export]]
+long int d15_2_map (std::vector<long int> input, long int round = 30000000) {
     auto res = preprocess(input);
     long int cur = input.size() + 1;
     long int ans = -1;
@@ -121,6 +167,7 @@ long int d15_2 (std::vector<long int> input, long int round = 30000000) {
     return ans;
 }
 
+
 /***R
 ## Bruteforce work for the first star; it doesn't work any longer for the second star.
 
@@ -142,6 +189,11 @@ stopifnot(d15_2(c(3,1,2), 2020) == 1836)
 ## Just test the last case.
 
 stopifnot(d15_2(c(3,1,2), 30000000) == 362)
+
+## what is the performance difference between std::map and std::unordered_map?
+
+microbenchmark::microbenchmark(d15_2(c(3,1,2), 300000), times = 20)
+microbenchmark::microbenchmark(d15_2_map(c(3,1,2), 300000), times = 20)
 
 d15_1(c(0,12,6,13,20,1,17), 2020)
 d15_2(c(0,12,6,13,20,1,17), 30000000)
