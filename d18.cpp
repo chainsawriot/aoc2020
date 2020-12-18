@@ -46,7 +46,7 @@ std::vector<std::string> explode(std::string s) {
 // https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 
 
-long long int parse_sy1(std::vector<std::string> tokens, std::map<std::string, int> precd) {
+long long int parse_sy1(std::vector<std::string> tokens, std::map<std::string, int>& precd) {
     std::stack<long long int> exp;
     std::stack<std::string> op;
     for (std::string& token: tokens) {
@@ -207,8 +207,6 @@ long long int d18_2(std::vector<std::string> input) {
 ## }
 
 ## c(exp, op)
-
-Rcpp::sourceCpp("d18.cpp")
 
 ## part 1
 
