@@ -30,15 +30,16 @@ rotate(rotate(rotate(puzzle)))
 
 
 Rcpp::sourceCpp("d20.cpp")
+testdata <- c(readLines(here::here("data/input20_testdata.txt")), "")
+
 test_parse(testdata[1:11])
 
 test_parse(testdata[1:11])
 testdata[13:23]
 test_parse(testdata[13:23])
 
-test_m(testdata[1:11], testdata[13:23])
+##test_m(testdata[1:11], testdata[13:23])
 
-testdata <- c(readLines(here::here("data/input20_testdata.txt")), "")
 stopifnot(d20_1(testdata) == 20899048083289)
 
 input20 <- c(readLines(here::here("data/input20.txt")))
@@ -48,3 +49,4 @@ input20 <- c(readLines(here::here("data/input20.txt")))
 options("scipen"=100, "digits"=4)
 d20_1(input20)
 
+testpp(testdata)
