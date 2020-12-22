@@ -50,3 +50,31 @@ options("scipen"=100, "digits"=4)
 d20_1(input20)
 
 testpp(testdata)
+
+tinydata <- c(readLines(here::here("data/input20_tiny.txt")))
+
+testpp(tinydata)
+
+res <- list()
+x <- 1
+require(stringr)
+stack <- c()
+for (i in tinydata) {
+    if (str_detect(i, "Tile")) {
+        ## do nothing
+        
+    } else if (i == "") {
+        print(stack)
+        chars <- str_split(paste0(stack, collapse = ""), "")[[1]]
+        print(chars)
+        out <- matrix(chars, nrow = 2, byrow = TRUE)
+        res[[x]] <- out
+        x <- x + 1
+        stack <- c()
+    } else {
+        stack <- c(stack, i)
+    }
+}
+
+col_fig1 <- c(1)
+col_fig2 <- c(0)
